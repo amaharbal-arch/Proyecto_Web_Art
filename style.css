@@ -16,6 +16,13 @@ body {
   animation: fadeIn 1.0s ease-in-out;
 }
 
+.menu-btn span {
+  background-color: #ffffff; /* Esto hace que las líneas del menú sean blancas */
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin-bottom: 5px;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
