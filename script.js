@@ -87,9 +87,9 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
       function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, 1500); 
+        const run = ease(timeElapsed, startPosition, distance, 1000); 
         window.scrollTo(0, run);
-        if (timeElapsed < 1500) requestAnimationFrame(animation);
+        if (timeElapsed < 1000) requestAnimationFrame(animation);
       }
 
       function ease(t, b, c, d) {
