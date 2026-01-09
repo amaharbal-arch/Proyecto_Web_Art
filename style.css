@@ -405,7 +405,7 @@ body {
   max-width: 800px;
   margin: 0 auto 60px auto; /* Centra el bloque y da espacio al título */
   text-align: left; /* Como sugeriste, alineado a la izquierda se ve más editorial */
-    margin-top: 40px;
+    margin-top: 120px;
     margin-bottom: 2px;
   text-align: center; /* En una frase tan larga y extendida, el centro da equilibrio */
   letter-spacing: 0.5px; /* Separa apenas las letras para un aire editorial */
