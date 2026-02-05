@@ -68,7 +68,7 @@ document.getElementById('openMenu').onclick = () => menuOverlay.classList.add('a
 document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remove('active');
 
 // ASIGNAR FILTROS A LOS LINKS DEL MENÚ
-document.querySelectorAll('.menu-nav a').forEach(link => {
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
     const categoria = e.target.innerText;
     // Mapeo simple: si el link dice "DIBUJO", filtramos por "Dibujo"
