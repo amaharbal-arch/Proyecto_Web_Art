@@ -346,6 +346,7 @@ body {
 }
 
 .social-title {
+  display: none; 
   font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 3px;
