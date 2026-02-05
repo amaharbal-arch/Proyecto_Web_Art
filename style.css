@@ -346,7 +346,6 @@ body {
 }
 
 .social-title {
-  display: none; 
   font-family: 'Jost', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 3px;
@@ -357,7 +356,6 @@ body {
 }
 
 .footer-social-icons {
-  display: none;
   display: flex;
   justify-content: center;
   align-items: center !important;
@@ -378,7 +376,6 @@ body {
 }
 
 .footer-contact {
-  display: none;
   text-align: center !important;
   padding-bottom: 50px !important;
 }
