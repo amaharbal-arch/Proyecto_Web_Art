@@ -346,6 +346,7 @@ body {
   padding: 100px 20px;
   text-align: center;
   border-top: 1px solid #111;
+  transition: opacity 2s ease; 
 }
 
 .social-title {
