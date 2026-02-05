@@ -1,8 +1,18 @@
-// --- LÓGICA DEL MENÚ (CON ANIMACIÓN) ---
+// CONFIGURACIÓN DE SUPABASE
+const SUPABASE_URL = 'https://ofrvngsaxvliowsqmajv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6WoIMC_zjLKgXtbLsyMf2g_rEF4pDiJ';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ESTADO DE LA GALERÍA
+let obrasData = [];
+let currentIndex = 0;
+
+// --- LÓGICA DEL MENÚ (RESTAURADA Y EXPLICADA) ---
 const openMenu = document.getElementById('openMenu');
 const closeMenu = document.getElementById('closeMenu');
 const menuOverlay = document.getElementById('menuOverlay');
 
+// Si el menú no se despliega, asegúrate de que 'active' en CSS tenga z-index alto y visibilidad
 openMenu.addEventListener('click', () => {
   menuOverlay.classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -13,62 +23,90 @@ closeMenu.addEventListener('click', () => {
   document.body.style.overflow = 'auto';
 });
 
-// --- LÓGICA DEL CARRUSEL (LIGHTBOX) ---
+// --- CARGA DINÁMICA DE SUPABASE ---
+async function fetchObras() {
+  const path = window.location.pathname;
+  let filtro = "";
+  
+  // Detectamos categoría por URL sin cambiar tus enlaces
+  if (path.includes("oleo")) filtro = "Óleo";
+  else if (path.includes("acuarela")) filtro = "Acuarela";
+  else if (path.includes("dibujo")) filtro = "Dibujo";
+
+  let query = _supabase.from('obras').select('*');
+  if (filtro) query = query.eq('categoria', filtro);
+
+  const { data, error } = await query;
+  if (!error) {
+    obrasData = data;
+    renderGrid();
+  }
+}
+
+function renderGrid() {
+  const grid = document.getElementById('photoGrid');
+  if (!grid) return;
+  
+  grid.innerHTML = ""; // Limpiamos los placeholders estáticos
+  
+  obrasData.forEach((obra, index) => {
+    const div = document.createElement('div');
+    div.className = 'photo-item';
+    div.innerHTML = `<img src="${obra.url_img}" alt="${obra.titulo}">`;
+    
+    div.addEventListener('click', () => {
+      currentIndex = index;
+      openLightbox();
+    });
+    grid.appendChild(div);
+  });
+}
+
+// --- LÓGICA DEL LIGHTBOX (CON TUS DATOS DE TABLA) ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const closeLightbox = document.getElementById('closeLightbox');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+const infoTitle = document.getElementById('artwork-title');
+const infoSize = document.getElementById('artwork-size');
+const infoTech = document.getElementById('artwork-tech');
+const infoYear = document.getElementById('artwork-year');
 
-const images = Array.from(document.querySelectorAll('.photo-item img'));
-let currentIndex = 0;
+function openLightbox() {
+  const obra = obrasData[currentIndex];
+  if (!obra) return;
 
-function updateLightbox() {
-  if (images[currentIndex]) {
-    lightboxImg.src = images[currentIndex].src;
-  }
+  lightboxImg.src = obra.url_img;
+  infoTitle.innerText = obra.titulo.toUpperCase();
+  infoSize.innerText = obra.medidas;
+  infoTech.innerText = obra.tecnica;
+  infoYear.innerText = obra.anio;
+
+  lightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-images.forEach((img, index) => {
-  img.parentElement.addEventListener('click', () => {
-    currentIndex = index;
-    updateLightbox();
-    lightbox.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  });
-});
-
-nextBtn.addEventListener('click', (e) => {
+// Navegación del Lightbox
+document.getElementById('nextBtn').addEventListener('click', (e) => {
   e.stopPropagation();
-  currentIndex = (currentIndex + 1) % images.length;
-  updateLightbox();
+  currentIndex = (currentIndex + 1) % obrasData.length;
+  openLightbox();
 });
 
-prevBtn.addEventListener('click', (e) => {
+document.getElementById('prevBtn').addEventListener('click', (e) => {
   e.stopPropagation();
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateLightbox();
+  currentIndex = (currentIndex - 1 + obrasData.length) % obrasData.length;
+  openLightbox();
 });
 
-if (closeLightbox) {
-  closeLightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  });
-}
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
+document.getElementById('closeLightbox').addEventListener('click', () => {
+  lightbox.style.display = 'none';
+  document.body.style.overflow = 'auto';
 });
 
+// --- LÓGICA DE NAVEGACIÓN Y SCROLL (TU CÓDIGO ORIGINAL) ---
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.addEventListener('click', (e) => {
     const targetId = link.getAttribute('href');
 
-    // Si el link es a otra página html, dejamos que el navegador navegue normalmente
     if (targetId.endsWith('.html') || !targetId.startsWith('#')) {
       menuOverlay.classList.remove('active');
       document.body.style.overflow = 'auto';
@@ -81,26 +119,13 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
     
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      let startTime = null;
-
-      function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, 1000); 
-        window.scrollTo(0, run);
-        if (timeElapsed < 1000) requestAnimationFrame(animation);
-      }
-
-      function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      }
-      requestAnimationFrame(animation);
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth'
+      });
     }
   });
 });
+
+// Arrancar proceso
+fetchObras();
