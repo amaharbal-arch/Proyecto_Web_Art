@@ -34,6 +34,7 @@ function renderGrid() {
     item.onclick = () => abrirLightbox(index);
     grid.appendChild(item);
   });
+  grid.style.opacity = '1';
 }
 
 // 3. LIGHTBOX Y DATOS (Soluciona Falla 3 y 4)
