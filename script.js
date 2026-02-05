@@ -1,104 +1,109 @@
-// --- LÓGICA DEL MENÚ (CON ANIMACIÓN) ---
-const openMenu = document.getElementById('openMenu');
-const closeMenu = document.getElementById('closeMenu');
-const menuOverlay = document.getElementById('menuOverlay');
+// --- CONFIGURACIÓN DE SUPABASE ---
+const SUPABASE_URL = 'https://ofrvngsaxvliowsqmajv.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6WoIMC_zjLKgXtbLsyMf2g_rEF4pDiJ'; 
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-openMenu.addEventListener('click', () => {
-  menuOverlay.classList.add('active');
-  document.body.style.overflow = 'hidden';
-});
-
-closeMenu.addEventListener('click', () => {
-  menuOverlay.classList.remove('active');
-  document.body.style.overflow = 'auto';
-});
-
-// --- LÓGICA DEL CARRUSEL (LIGHTBOX) ---
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const closeLightbox = document.getElementById('closeLightbox');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-const images = Array.from(document.querySelectorAll('.photo-item img'));
+let obrasData = []; 
 let currentIndex = 0;
 
-function updateLightbox() {
-  if (images[currentIndex]) {
-    lightboxImg.src = images[currentIndex].src;
-  }
+// --- 1. LÓGICA DEL MENÚ ---
+const menuOverlay = document.getElementById('menuOverlay');
+document.getElementById('openMenu').addEventListener('click', () => {
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+// --- 2. CARGA DE DATOS DESDE CHILE A LA NUBE ---
+async function fetchGallery() {
+    const grid = document.getElementById('photoGrid');
+    grid.innerHTML = '<p style="color:gray; text-align:center; width:100%; padding: 20px;">Cargando galería...</p>';
+    
+    // Detectar categoría por el nombre del archivo
+    const path = window.location.pathname;
+    let categoriaFiltro = null;
+    if (path.includes('oleo')) categoriaFiltro = 'oleo';
+    if (path.includes('acuarela')) categoriaFiltro = 'acuarela';
+    if (path.includes('dibujo')) categoriaFiltro = 'dibujo';
+
+    let query = supabase.from('obras').select('*');
+    if (categoriaFiltro) {
+        query = query.eq('categoria', categoriaFiltro);
+    }
+
+    const { data, error } = await query.order('id', { ascending: true });
+
+    if (error) {
+        grid.innerHTML = '<p style="color:red;">Error al conectar con Supabase.</p>';
+        return;
+    }
+
+    obrasData = data;
+    renderGrid(data);
 }
 
-images.forEach((img, index) => {
-  img.parentElement.addEventListener('click', () => {
+function renderGrid(obras) {
+    const grid = document.getElementById('photoGrid');
+    grid.innerHTML = '';
+    
+    obras.forEach((obra, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('photo-item');
+        
+        const img = document.createElement('img');
+        img.src = obra.url_img;
+        img.alt = obra.titulo;
+        img.loading = "lazy"; // Optimización para su Pentium
+        
+        itemDiv.appendChild(img);
+        grid.appendChild(itemDiv);
+
+        // Evento para abrir Lightbox
+        itemDiv.addEventListener('click', () => openLightbox(index));
+    });
+}
+
+// --- 3. LIGHTBOX DINÁMICO ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+function openLightbox(index) {
     currentIndex = index;
-    updateLightbox();
+    updateLightboxContent();
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-  });
-});
+}
 
-nextBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex + 1) % images.length;
-  updateLightbox();
-});
+function updateLightboxContent() {
+    const obra = obrasData[currentIndex];
+    if (!obra) return;
 
-prevBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateLightbox();
-});
+    lightboxImg.src = obra.url_img;
+    document.getElementById('artwork-title').textContent = obra.titulo;
+    document.getElementById('artwork-size').textContent = obra.medidas;
+    document.getElementById('artwork-tech').textContent = obra.tecnica;
+    document.getElementById('artwork-year').textContent = obra.anio;
+}
 
-closeLightbox.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-  document.body.style.overflow = 'auto';
-});
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
+// Botones de navegación
+document.getElementById('closeLightbox').onclick = () => {
     lightbox.style.display = 'none';
     document.body.style.overflow = 'auto';
-  }
-});
-document.querySelectorAll('.mobile-nav-link').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href');
+};
 
-    // Si el link NO tiene un #, es un link externo (como SHOP)
-    if (!targetId.startsWith('#')) {
-      document.getElementById('menuOverlay').classList.remove('active');
-      document.body.style.overflow = 'auto';
-      return; // Aquí termina, el navegador te lleva a tu tienda normal
-    }
+document.getElementById('nextBtn').onclick = (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % obrasData.length;
+    updateLightboxContent();
+};
 
-    // Si tiene #, hacemos el scroll elegante que te gustó
-    e.preventDefault();
-    document.getElementById('menuOverlay').classList.remove('active');
-    document.body.style.overflow = 'auto';
-    
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      let startTime = null;
+document.getElementById('prevBtn').onclick = (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + obrasData.length) % obrasData.length;
+    updateLightboxContent();
+};
 
-      function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, 1000); 
-        window.scrollTo(0, run);
-        if (timeElapsed < 1000) requestAnimationFrame(animation);
-      }
-
-      function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      }
-      requestAnimationFrame(animation);
-    }
-  });
-});
+document.addEventListener('DOMContentLoaded', fetchGallery);
