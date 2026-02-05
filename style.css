@@ -171,6 +171,8 @@ body {
 
 /* GRILLA FOTOGRÁFICA */
 .photo-grid {
+  opacity: 0; /* Invisible al inicio */
+  transition: opacity 1.5s ease; /* Velocidad del resurgir suave */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
@@ -339,6 +341,7 @@ body {
 }
 /* FOOTER */
 .footer-minimal {
+  opacity: 0; /* Invisible al inicio */
   background-color: #000;
   padding: 100px 20px;
   text-align: center;
