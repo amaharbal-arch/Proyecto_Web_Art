@@ -1,6 +1,6 @@
 // CONFIGURACIÓN DE SUPABASE
-const SUPABASE_URL = 'https://ofrvngsaxvliowsqmajv.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_6WoIMC_zjLKgXtbLsyMf2g_rEF4pDiJ';
+const SUPABASE_URL = 'https://ehqzwwhowyuvrrnwszhr.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6VrAfvNy2NhbJpWalFGqLw_I295HGsv'; // Tu nueva clave
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ESTADO DE LA GALERÍA
