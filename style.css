@@ -378,12 +378,12 @@ body {
 }
 
 .footer-contact {
+  display: none;
   text-align: center !important;
   padding-bottom: 50px !important;
 }
 
 .footer-contact a {
-  display: none;
   font-family: 'Jost', sans-serif !important;
   font-size: 0.7rem !important;
   color: #999 !important;
