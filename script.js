@@ -70,10 +70,14 @@ document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remov
 // ASIGNAR FILTROS A LOS LINKS DEL MENÚ
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
-    const categoria = e.target.innerText;
+    const textoBoton = e.target.innerText.trim();
+    if (textoBoton === 'CONTACTO') {
+      menuOverlay.classList.remove('active');
+      return;
+      }
     // Mapeo simple: si el link dice "DIBUJO", filtramos por "Dibujo"
     const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'ACUARELA': 'Acuarela', 'INICIO': 'Todos' };
-    cargarGaleria(filtroMapa[categoria] || 'Todos');
+    cargarGaleria(filtroMapa[textoBoton] || 'Todos');
     menuOverlay.classList.remove('active');
   };
 });
