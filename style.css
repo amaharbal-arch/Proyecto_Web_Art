@@ -55,7 +55,7 @@ body {
 .menu-btn span {
   display: block !important;
   width: 25px !important;
-  height: 1px !important; /* Grosor fino */
+  height: 2px !important; /* Grosor fino */
   min-height: 1px !important; /* Fuerza al navegador a dibujarla */
   background-color: #ffffff !important; /* Blanco puro */
   margin: 5px 0; /* Espaciado entre las tres líneas */
