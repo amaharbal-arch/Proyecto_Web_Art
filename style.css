@@ -358,7 +358,7 @@ body {
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
-. social-title a {
+.social-title a {
   color: #ffffff !important;
   transition: color 0.3s ease, transform 0.3s ease;
 } 
