@@ -52,40 +52,34 @@ body {
 }
 
 /* BOTÓN HAMBURGUESA */
+/* BOTÓN HAMBURGUESA - RESTAURADO Y CORREGIDO */
 .menu-btn {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   padding: 10px;
-  z-index: 1001;
-  transition: transform 0.3s ease;
 }
 
-/* Estado normal de las rayitas */
 .menu-btn span {
   width: 25px;
-  height: 2px;
-  background-color: #ffffff !important;
+  height: 1px;
+  background-color: #f5f5f5; /* Blanco invierno suave */
+  transition: 0.3s ease;
   display: block;
-  transition: all 0.3s ease; /* Para que el aumento de tamaño sea suave */
 }
 
-/* HOVER: Aquí es donde aumentan de tamaño */
 .menu-btn:hover span {
-  width: 32px; /* Aumenta el ancho */
-  background-color: #f5f5f5;
+  background-color: #ffffff; /* Iluminación leve */
 }
 
-/* ACTIVE: Lo que pasa cuando mantiene apretado */
+/* Evita que desaparezca al mantener presionado */
 .menu-btn:active span {
-  width: 25px; /* Vuelven a su tamaño original para dar feedback de clic */
   background-color: #ffffff;
-  opacity: 1 !important; /* Evita que desaparezcan */
+  opacity: 1 !important;
 }
-
 /* MENÚ DESPLEGABLE */
 .mobile-nav {
   position: fixed;
