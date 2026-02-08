@@ -63,11 +63,12 @@ body {
 }
 
 .menu-btn span {
-  width: 25px;
-  height: 1px;
-  background-color: #888;
-  transition: 0.3s ease;
-  display: block;
+  display: block !important;
+  width: 30px !important;
+  height: 3px !important;
+  background-color: #ff0000 !important; /* ROJO TEMPORAL PARA PRUEBA */
+  margin: 4px 0 !important;
+  z-index: 9999 !important;
 }
 
 .menu-btn:hover span {
