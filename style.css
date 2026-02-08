@@ -52,17 +52,16 @@ body {
 }
 
 /* BOTÓN HAMBURGUESA - FINO Y PERSISTENTE */
-.menu-btn {
-  background: none !important;
-  border: none !important;
-  cursor: pointer;
-  display: flex !important;
-  flex-direction: column;
-  gap: 5px; /* Espacio elegante entre líneas */
-  padding: 10px;
-  z-index: 9999;
+.menu-btn span {
+  display: block !important;
+  width: 25px !important;
+  height: 1px !important; /* Grosor fino */
+  min-height: 1px !important; /* Fuerza al navegador a dibujarla */
+  background-color: #ffffff !important; /* Blanco puro */
+  margin: 5px 0; /* Espaciado entre las tres líneas */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
-
 .menu-btn span {
   width: 24px;
   height: 1px; /* La finura que usted quiere */
@@ -72,12 +71,7 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* Blindaje para que al mantener apretado NO se borren */
-.menu-btn:active span,
-.menu-btn:focus span {
-  opacity: 1 !important;
-  background-color: #ffffff !important;
-}
+
 /* MENÚ DESPLEGABLE */
 .mobile-nav {
   position: fixed;
