@@ -370,11 +370,11 @@ body {
   gap: 40px;
   margin-bottom: 10px;
   margin-top: 40px;
-  color: #777;
+  color: #666;
 }
 
 .footer-social-icons a {
-  color: #777 ;
+  color: #666 ;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -386,13 +386,13 @@ body {
 .footer-contact {
   text-align: center !important;
   padding-bottom: 50px !important;
-  color: #777;
+  color: #666;
 }
 
 .footer-contact a {
   font-family: 'Jost', sans-serif !important;
   font-size: 0.7rem !important;
-  color: #777 !important;
+  color: #666 !important;
   text-decoration: none !important;
   letter-spacing: 3px !important;
   transition: all 0.3s ease !important;
