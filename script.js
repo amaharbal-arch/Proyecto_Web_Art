@@ -35,7 +35,7 @@ function renderGrid() {
     grid.appendChild(item);
   });
   grid.style.opacity = '1';
-  document.querySelector('.footer-minimal').style.opacity = '0.3';
+  document.querySelector('.footer-minimal').style.opacity = '1';
 }
 
 // 3. LIGHTBOX Y DATOS (Soluciona Falla 3 y 4)
