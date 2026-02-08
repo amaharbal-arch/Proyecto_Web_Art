@@ -358,10 +358,10 @@ body {
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
-.social-title a {
+.social-title:hover {
   color: #ffffff;
   transition: color 0.3s ease, transform 0.3s ease;
-} 
+}
 
 .footer-social-icons {
   display: flex;
@@ -374,7 +374,7 @@ body {
 }
 
 .footer-social-icons a {
-  color: #999f ;
+  color: #777 ;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -392,7 +392,7 @@ body {
 .footer-contact a {
   font-family: 'Jost', sans-serif !important;
   font-size: 0.7rem !important;
-  color: #999 !important;
+  color: #777 !important;
   text-decoration: none !important;
   letter-spacing: 3px !important;
   transition: all 0.3s ease !important;
@@ -401,7 +401,7 @@ body {
 
 .footer-contact a:hover {
   color: #ffffff ;
-  font-size: 0.92rem !important;
+  font-size: 1.1rem !important;
 }
 
 .footer-statement {
