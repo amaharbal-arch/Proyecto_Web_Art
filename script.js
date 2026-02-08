@@ -26,7 +26,11 @@ async function cargarGaleria(filtro = 'Todos') {
 
 function renderGrid() {
   const grid = document.getElementById('photoGrid');
+  const footer = document.querySelector('.footer-minimal');
+  
+  footer.style.opacity = '0'; // Apaga el contacto en cada cambio
   grid.innerHTML = ""; 
+  
   obrasData.forEach((obra, index) => {
     const item = document.createElement('div');
     item.className = 'photo-item';
@@ -34,8 +38,12 @@ function renderGrid() {
     item.onclick = () => abrirLightbox(index);
     grid.appendChild(item);
   });
+
   grid.style.opacity = '1';
-  document.querySelector('.footer-minimal').style.opacity = '1';
+  // El contacto espera 1.2 segundos para aparecer después de las obras
+  setTimeout(() => { 
+    footer.style.opacity = '1'; 
+  }, 1200); 
 }
 
 // 3. LIGHTBOX Y DATOS (Soluciona Falla 3 y 4)
