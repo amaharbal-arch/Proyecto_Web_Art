@@ -66,7 +66,7 @@ body {
 .menu-btn span {
   width: 25px;
   height: 1px;
-  background-color: #f5f5f5; /* Blanco invierno suave */
+  background-color: #ffffff !important;/* Blanco invierno suave */
   transition: 0.3s ease;
   display: block;
 }
