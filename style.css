@@ -16,7 +16,6 @@ body {
   animation: fadeIn 1.0s ease-in-out;
 }
 
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -51,26 +50,25 @@ body {
   opacity: 0.8;
 }
 
-/* BOTÓN HAMBURGUESA - FINO Y PERSISTENTE */
-.menu-btn span {
-  display: block !important;
-  width: 25px !important;
-  height: 2px !important; /* Grosor fino */
-  min-height: 1px !important; /* Fuerza al navegador a dibujarla */
-  background-color: #ffffff !important; /* Blanco puro */
-  margin: 5px 0; /* Espaciado entre las tres líneas */
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.menu-btn span {
-  width: 24px;
-  height: 1px; /* La finura que usted quiere */
-  background-color: #ffffff !important; /* Blanco puro para que se vea */
-  display: block;
-  opacity: 1 !important; /* Prohibido desaparecer */
-  transition: opacity 0.3s ease;
+/* BOTÓN HAMBURGUESA - CORREGIDO (FINO) */
+.menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px;
 }
 
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 1px; /* Finura máxima */
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
 
 /* MENÚ DESPLEGABLE */
 .mobile-nav {
@@ -101,7 +99,7 @@ body {
   pointer-events: auto;
   opacity: 1 !important;
   transform: translateX(0) !important;
-  }
+}
 
 .mobile-nav-link {
   color: #999;
@@ -169,8 +167,8 @@ body {
 
 /* GRILLA FOTOGRÁFICA */
 .photo-grid {
-  opacity: 0; /* Invisible al inicio */
-  transition: opacity 1.5s ease; /* Velocidad del resurgir suave */
+  opacity: 0;
+  transition: opacity 1.5s ease;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
@@ -197,13 +195,13 @@ body {
 
 /* LIGHTBOX */
 .lightbox {
-  position: fixed; 
-  inset: 0; 
+  position: fixed;
+  inset: 0;
   background: rgba(0,0,0,0.95);
-  z-index: 3000; 
-  display: none; 
+  z-index: 3000;
+  display: none;
   flex-direction: column;
-  justify-content: left; 
+  justify-content: left;
   align-items: center;
 }
 
@@ -218,29 +216,29 @@ body {
 
 #lightboxImg {
   height: 80vh !important;
-  width: auto; !important;
+  width: auto !important;
   max-width: 100vw;
   display: block;
   object-fit: contain;
-  margin-top: 30px; 
+  margin-top: 30px;
 }
 
-/* ESTILO DE LA X */
 .lightbox-close {
-  display: none; /* Se mantiene oculta en PC */
+  display: none;
   position: fixed;
   top: 25px;
   right: 25px;
   color: #ffffff;
-  z-index: 4000; /* Por encima de todo */
+  z-index: 4000;
   cursor: pointer;
   line-height: 1;
 }
-.lightbox-close:hover{
+
+.lightbox-close:hover {
   color: #ffffff !important;
   font-size: 1.5rem;
 }
-/* SOLO APARECE EN CELULARES */
+
 @media (max-width: 768px) {
   .lightbox-close {
     display: block !important;
@@ -255,7 +253,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 20px;      
+  padding: 20px;
   z-index: 3100;
   transition: all 0.3s ease;
   display: flex;
@@ -264,53 +262,41 @@ body {
 }
 
 .nav-btn svg {
-  color: rgba(255, 255, 255, 0.1) !important; /* Casi invisibles */
-  fill: none !important; /* Evita que una se vea más rellena */
+  color: rgba(255, 255, 255, 0.1) !important;
+  fill: none !important;
   stroke: currentColor !important;
-  stroke-width: 0.5px !important; /* Grosor idéntico para las dos */
+  stroke-width: 0.5px !important;
   width: 37px !important;
   height: 37px !important;
   transition: all 0.4s ease;
 }
-/* 1. Posición base: Izquierda rotada, Derecha normal */
-.prev svg { 
-  transform: rotate(180deg) !important; 
-}
 
-.next svg { 
-  transform: rotate(0deg) !important; 
-}
+.prev svg { transform: rotate(180deg) !important; }
+.next svg { transform: rotate(0deg) !important; }
 
-/* 2. Hover: Ambas se iluminan */
 .nav-btn:hover svg {
   color: rgba(255, 255, 255, 1.3) !important;
 }
 
-/* 3. Hover específico: Para que no se den vuelta al crecer */
-.prev:hover svg {
-  transform: rotate(180deg) scale(1.2)!important;
-}
-
-.next:hover svg {
-  transform: rotate(0deg) scale(1.2)!important;
-}
+.prev:hover svg { transform: rotate(180deg) scale(1.2)!important; }
+.next:hover svg { transform: rotate(0deg) scale(1.2)!important; }
 
 .prev { left: 4% !important; }
 .next { right: 4% !important; }
 
-/* TEXTO DE LA OBRA (ESQUINA INFERIOR IZQUIERDA) */
+/* TEXTO DE LA OBRA */
 .artwork-info {
-  margin-top: 8px; /* Espacio debajo de la imagen */
+  margin-top: 8px;
   font-family: 'Jost', sans-serif;
-  width: auto; /* Se ajusta al ancho de la imagen */
+  width: auto;
   max-width: 80vw;
-  text-align: left; /* Lo pega a la izquierda */
+  text-align: left;
   cursor: default;
 }
+
 .artwork-info h3 {
   font-size: 0.60rem;
-  font-family: 'Jost', sans-serif;
-  color: rgba(255, 255, 255, 0.1);/*MAS GRIS*/
+  color: rgba(255, 255, 255, 0.1);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 4px;
@@ -319,32 +305,22 @@ body {
 
 .artwork-info p {
   font-size: 0.5rem;
-  font-family: 'Jost', sans-serif;
-  color: rgba(255, 255, 255, 0.1);/* Más suave aún */
+  color: rgba(255, 255, 255, 0.1);
   letter-spacing: 1px;
   transition: all 0.4s ease;
 }
 
-.artwork-info:hover {
-  transform: scale(1); /* Crece un poquito */
-  transform-origin: left; /* Crece desde la izquierda */
-}
+.artwork-info:hover h3 { color:rgba(255, 255, 255, 0.7); }
+.artwork-info:hover p { color: rgba(255, 255, 255, 0.6); }
 
-.artwork-info:hover h3 {
-  color:rgba(255, 255, 255, 0.7);/* Blanco total */
-}
-
-.artwork-info:hover p {
-  color: rgba(255, 255, 255, 0.6); /* Blanco suave */
-}
 /* FOOTER */
 .footer-minimal {
-  opacity: 0; /* Invisible al inicio */
+  opacity: 0;
   background-color: #000;
   padding: 100px 20px;
   text-align: center;
   border-top: 1px solid #111;
-  transition: opacity 2s ease; 
+  transition: opacity 2s ease;
 }
 
 .social-title {
@@ -356,10 +332,8 @@ body {
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
-.social-title:hover {
-  color: #ffffff;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
+
+.social-title:hover { color: #ffffff; }
 
 .footer-social-icons {
   display: flex;
@@ -408,15 +382,13 @@ body {
   font-style: italic;
   font-weight: 300;
   font-size: 1.1rem;
-  color: #f5f5f5 !important; /* Blanco invierno: luminoso pero suave */
+  color: #f5f5f5 !important;
   line-height: 1.5;
   max-width: 800px;
   margin: 120px auto 60px auto;
   text-align: center;
   letter-spacing: 0.5px;
   opacity: 1 !important;
-  visibility: visible !important;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Brillo sutil de fondo */
 }
 
 /* RESPONSIVE */
@@ -426,7 +398,7 @@ body {
 
 @media (max-width: 768px) {
   .photo-grid { grid-template-columns: repeat(2, 1fr); }
-  .mobile-nav { width: 100%; } 
+  .mobile-nav { width: 100%; }
 }
 
 @media (max-width: 480px) {
