@@ -51,34 +51,32 @@ body {
   opacity: 0.8;
 }
 
-/* BOTÓN HAMBURGUESA - VERSIÓN BLINDADA */
+/* BOTÓN HAMBURGUESA - FINO Y PERSISTENTE */
 .menu-btn {
   background: none !important;
   border: none !important;
   cursor: pointer;
   display: flex !important;
   flex-direction: column;
-  gap: 5px !important;
+  gap: 5px; /* Espacio elegante entre líneas */
   padding: 10px;
-  z-index: 9999 !important; /* Asegura que nada lo tape */
+  z-index: 9999;
 }
 
 .menu-btn span {
-  width: 25px !important;
-  height: 1px !important;
-  background-color: #ffffff !important; /* Blanco puro sólido */
-  display: block !important;
-  opacity: 1 !important; /* Prohibido transparentarse */
-  transition: transform 0.3s ease;
+  width: 24px;
+  height: 1px; /* La finura que usted quiere */
+  background-color: #ffffff !important; /* Blanco puro para que se vea */
+  display: block;
+  opacity: 1 !important; /* Prohibido desaparecer */
+  transition: opacity 0.3s ease;
 }
 
-/* Blindaje total: No desaparece al mantener apretado o clickear */
+/* Blindaje para que al mantener apretado NO se borren */
 .menu-btn:active span,
-.menu-btn:focus span,
-.menu-btn:hover span {
-  background-color: #ffffff !important;
+.menu-btn:focus span {
   opacity: 1 !important;
-  visibility: visible !important;
+  background-color: #ffffff !important;
 }
 /* MENÚ DESPLEGABLE */
 .mobile-nav {
