@@ -8,15 +8,21 @@ let currentIndex = 0;
 // 1. CARGA INICIAL (Soluciona Falla 1)
 async function cargarGaleria(filtro = 'Todos') {
   const grid = document.getElementById('photoGrid');
-  grid.innerHTML = ""; // Limpia fotos viejas inmediatamente
-
-  let query = _supabase.from('obras').select('*');
-  
-  // 2. FILTRADO (Soluciona Falla 2)
-  if (filtro !== 'Todos') {
-    query = query.eq('categoria', filtro);
+  const footer = document.querySelector('.footer-minimal');
+  // REINICIO DE INGENIERÍA: Resetea el reloj de los contactos
+  if (footer) {
+    footer.classList.remove('footer-activo');
+    void footer.offsetWidth; // fuerza al navegador a reiniciar la animacion
+    footer.classList.add('footer-activo');
   }
-
+  window.scrollTo(0, 0);
+  if (grid) grid.style.opacity = '0';
+  
+  grid.innerHTML = ""; // Limpia fotos viejas inmediatamente
+  let query = _supabase.from('obras').select('*');
+  // 2. FILTRADO (Soluciona Falla 2)
+  if (filtro !== 'Todos') { query = query.eq('categoria', filtro);}
+  
   const { data, error } = await query;
   if (data) {
     obrasData = data;
@@ -26,11 +32,7 @@ async function cargarGaleria(filtro = 'Todos') {
 
 function renderGrid() {
   const grid = document.getElementById('photoGrid');
-  const footer = document.querySelector('.footer-minimal');
-  
-  footer.style.opacity = '0'; // Apaga el contacto en cada cambio
   grid.innerHTML = ""; 
-  
   obrasData.forEach((obra, index) => {
     const item = document.createElement('div');
     item.className = 'photo-item';
@@ -38,14 +40,12 @@ function renderGrid() {
     item.onclick = () => abrirLightbox(index);
     grid.appendChild(item);
   });
-
-  grid.style.opacity = '1';
-  // El contacto espera 1.2 segundos para aparecer después de las obras
-  setTimeout(() => { 
-    footer.style.opacity = '1'; 
-  }, 1200); 
+  grid.style.opacity = '0';
+  setTimeout(() => {
+    grid.style.opacity = '1'; // Las fotos aparecen a los 0.6s
+  }, 100);
 }
-
+  
 // 3. LIGHTBOX Y DATOS (Soluciona Falla 3 y 4)
 function abrirLightbox(index) {
   currentIndex = index;
@@ -81,10 +81,10 @@ document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remov
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
     const textoBoton = e.target.innerText.trim();
-    if (textoBoton === 'CONTACTO') {
+    if (textoBoton === 'CONTACTO' || textoBoton === 'TIENDA') {
       menuOverlay.classList.remove('active');
       return;
-      }
+    }
     // Mapeo simple: si el link dice "DIBUJO", filtramos por "Dibujo"
     const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'ACUARELA': 'Acuarela', 'INICIO': 'Todos' };
     cargarGaleria(filtroMapa[textoBoton] || 'Todos');
