@@ -81,12 +81,12 @@ document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remov
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
     const textoBoton = e.target.innerText.trim();
-    if (textoBoton === 'CONTACTO' || textoBoton === 'TIENDA') {
+    if (textoBoton === 'INICIO' || textoBoton === 'CONTACTO' || textoBoton === 'TIENDA') {
       menuOverlay.classList.remove('active');
       return;
     }
     // Mapeo simple: si el link dice "DIBUJO", filtramos por "Dibujo"
-    const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'ACUARELA': 'Acuarela', 'INICIO': 'Todos' };
+    const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'ACUARELA': 'Acuarela' };
     cargarGaleria(filtroMapa[textoBoton] || 'Todos');
     menuOverlay.classList.remove('active');
   };
