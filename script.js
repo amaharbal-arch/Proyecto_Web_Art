@@ -86,7 +86,7 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
       return;
     }
     // Mapeo simple: si el link dice "DIBUJO", filtramos por "Dibujo"
-    const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'ACUARELA': 'Acuarela' };
+    const filtroMapa = { 'DIBUJO': 'Dibujo', 'ÓLEO': 'Óleo', 'OLEO': 'Óleo', 'ACUARELA': 'Acuarela' };
     cargarGaleria(filtroMapa[textoBoton] || 'Todos');
     menuOverlay.classList.remove('active');
   };
