@@ -41,7 +41,7 @@ body {
 
 .logo img {
   height: 10px;
-  width: auto;
+  width: 10PX;
   display: block;
   margin-left: 10px; /* Empuja el logo alineándolo a la derecha */
   filter: brightness(0.5) invert(1);
