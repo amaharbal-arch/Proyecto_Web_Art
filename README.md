@@ -4,8 +4,8 @@
 Núcleo robusto de alto rendimiento, cero dependencias pesadas y arquitectura minimalista para la exhibición de obras de arte en alta fidelidad.
 
 ## WEB: https://proyecto-web-art.vercel.app
-        https://proyecto-web-art.onrender.com/
-        https://proyecto-web-art.netlify.app/  
+## WEB: https://proyecto-web-art.onrender.com/
+## WEB: https://proyecto-web-art.netlify.app/  
 ---
 
 ## 🛠️ Arquitectura y Tecnologías
