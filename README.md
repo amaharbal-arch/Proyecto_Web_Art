@@ -3,6 +3,9 @@
 
 Núcleo robusto de alto rendimiento, cero dependencias pesadas y arquitectura minimalista para la exhibición de obras de arte en alta fidelidad.
 
+## WEB: https://proyecto-web-art.vercel.app
+        https://proyecto-web-art.onrender.com/
+        https://proyecto-web-art.netlify.app/  
 ---
 
 ## 🛠️ Arquitectura y Tecnologías
@@ -29,3 +32,4 @@ El software requiere las variables globales configuradas en el script de persist
 ```javascript
 const SUPABASE_URL = '[https://ehqzwwhowyuvrrnwszhr.supabase.co](https://ehqzwwhowyuvrrnwszhr.supabase.co)';
 const SUPABASE_KEY = 'sb_publishable_...';
+
