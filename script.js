@@ -81,7 +81,7 @@ document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remov
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
     const textoBoton = e.target.innerText.trim();
-    if (textoBoton === 'INICIO' || textoBoton === 'CONTACTO' || textoBoton === 'TIENDA') {
+    if (textoBoton === 'INICIO' || textoBoton === 'CONTACTO') {
       menuOverlay.classList.remove('active');
       return;
     }
