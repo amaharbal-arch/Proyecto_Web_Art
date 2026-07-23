@@ -19,7 +19,7 @@ async function cargarGaleria(filtro = 'Todos') {
   if (grid) grid.style.opacity = '0';
   
   grid.innerHTML = ""; // Limpia fotos viejas inmediatamente
-  let query = _supabase.from('obras').select('*').order('id', { ascending: true });;
+  let query = _supabase.from('obras').select('*').order('id', { ascending: false });;
   // 2. FILTRADO (Soluciona Falla 2)
   if (filtro !== 'Todos') { query = query.eq('categoria', filtro);}
   
