@@ -92,5 +92,10 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
     menuOverlay.classList.remove('active');
   };
 });
+document.getElementById('lightbox').onclick = (e) => {
+  if (e.target.id === 'lightbox') {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+};
 
 cargarGaleria();
