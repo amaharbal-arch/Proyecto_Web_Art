@@ -12,15 +12,26 @@
 </head>
 <body>
   <header class="header">
-  <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+  <div class="header-container">
      <a href="/" style="text-decoration: none;">
-      <p class="social-title" style="margin: 0; font-size: 1rem">MI GALERIA</p>
+      <p class="social-title" style="margin: 0; font-size: 1.5rem">MI GALERIA</p>
      </a>
-      <button class="menu-btn" id="openMenu" aria-label="Abrir Menú" style="margin: 0;">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+
+     <!-- NAVEGACIÓN HORIZONTAL (Se muestra en PC, se oculta en móviles gracias al CSS) -->
+     <nav class="desktop-nav">
+       <a href="/" >INICIO</a>
+       <a href="#" >ÓLEO</a>
+       <a href="#" >ACUARELA</a>
+       <a href="#" >DIBUJO</a>
+       <a href="#footer-container">CONTACTO</a>
+     </nav>
+
+     <!-- BOTÓN HAMBURGUESA (Se oculta en PC, aparece en pantallas menores a 900px) -->
+     <button class="menu-btn" id="openMenu" aria-label="Abrir Menú">
+       <span></span>
+       <span></span>
+       <span></span>
+     </button>
   </div>
 </header>
 
@@ -88,8 +99,8 @@
           </svg>
         </a>
        <a href="mailto:MiGaleria2026@outlook.es" aria-label="Contacto">
-         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 38px; height: 38px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-       </a>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 38px; height: 38px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+</a>
       </div>
               <div style="display: inline-flex; align-items: center; gap: 12px; color: #c0c0c0; font-size: 1.2rem;">
        <span>Email: MiGaleria2026@outlook.es</span>      
