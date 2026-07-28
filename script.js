@@ -1,3 +1,4 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 const SUPABASE_URL = 'https://ehqzwwhowyuvrrnwszhr.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_6VrAfvNy2NhbJpWalFGqLw_I295HGsv'; 
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -52,6 +53,7 @@ function abrirLightbox(index) {
   const obra = obrasData[currentIndex];
   
   document.getElementById('lightboxImg').src = obra.url_img;
+  document.getElementById('lightboxImg').onclick = () => cambiarImagen(1); // <--- AQUI
   document.getElementById('artwork-title').innerText = obra.titulo.toUpperCase();
   document.getElementById('artwork-size').innerText = obra.medidas;
   document.getElementById('artwork-tech').innerText = obra.tecnica;
