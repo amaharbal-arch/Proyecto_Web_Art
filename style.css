@@ -1,7 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 /* RESET */
-html {
-  scroll-behavior: smooth;
-}/* RESET */
 html {
   scroll-behavior: smooth;
 }
@@ -55,20 +53,40 @@ body {
   opacity: 0.8;
 }
 
+/* NAVEGACIÓN HORIZONTAL POR DEFECTO (Escritorio / Pantallas grandes) */
+.desktop-nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.desktop-nav a {
+  color: #999;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  color: #fff;
+}
+
 /* BOTÓN HAMBURGUESA */
 .menu-btn {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: none;
   flex-direction: column;
-  gap: 4px;
-  padding: 10px;
+  gap: 5px;
+  padding: 12px;
 }
 
 .menu-btn span {
-  width: 25px;
-  height: 1px;
+  width: 30px;
+  height: 1.2px;
   background-color: #fff;
   transition: 0.3s ease;
   display: block;
@@ -83,7 +101,7 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 400px;
+  width: 500px;
   height: 100vh !important;
   background-color: rgba(0, 0, 0, 0.92) !important;
   backdrop-filter: blur(10px);
@@ -91,7 +109,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 40px;
+  padding-left: 50px;
   border-left: 1px solid #111;
   font-family: 'Jost', sans-serif;
   box-shadow: -10px 0px 30px rgba(0,0,0,0.5);
@@ -112,7 +130,7 @@ body {
 .mobile-nav-link {
   color: #999;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin: 12px 0;
   letter-spacing: 3px;
   font-weight: 300;
@@ -163,14 +181,15 @@ body {
   right: 30px;
   background: none;
   border: none;
-  color: #999;
-  font-size: 1.1rem;
+  color: #d1d1d1;
+  font-size: 1.8rem;
+  font-weight: 200;
   cursor: pointer;
 }
 
 .close-menu:hover {
   color: #ffffff !important;
-  font-size: 1.2rem;
+  font-size: 2.5rem;
 }
 
 /* GRILLA FOTOGRÁFICA */
@@ -251,12 +270,12 @@ body {
   z-index: 4000; 
   cursor: pointer;
   line-height: 1.9;
-  font-size: 3.0rem;
+  font-size: 5.0rem;
 }
 
 .lightbox-close:hover {
   color: #ffffff !important;
-  font-size: 3.2rem;
+  font-size: 5.2rem;
 }
 
 @media (max-width: 768px) {
@@ -327,9 +346,10 @@ body {
   cursor: default;       /* Mantenemos la elegancia de que no es un link */
 }
 .artwork-info h3 {
-  font-size: 0.70rem;
+  font-size: 1.3rem;
   font-family: 'Jost', sans-serif;
-  color: #888;
+  font-weight: 450;
+  color: #999;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 4px;
@@ -337,15 +357,16 @@ body {
 }
 
 .artwork-info p {
-  font-size: 0.60rem;
+  font-size: 0.95rem;
   font-family: 'Jost', sans-serif;
-  color: #777;
+  font-weight: 300;
+  color: #999;
   letter-spacing: 1px;
   transition: all 0.4s ease;
 }
 
 .artwork-info:hover {
-  transform: scale(1.03); 
+  transform: scale(1.2); 
   transform-origin: left; 
 }
 
@@ -381,17 +402,27 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .social-title {
-  font-family: 'Jost', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 3px;
-  color: #999 ;
-  margin-top: 50px;
+  font-family: 'Special Elite', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: #d1d1d1;
   text-transform: uppercase;
-  transition: color 0.3s ease;
+  
+  /* Simula el golpe de imprenta rústica: partes con mucha tinta y zonas con vacíos */
+ text-shadow: 
+    1px 1px 0px rgba(0,0,0,0.9), 
+    2px 0px 4px rgba(0,0,0,0.8);
+    
+  transition: all 0.4s ease;
 }
+
 .social-title:hover {
   color: #ffffff;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transform: scale(1.08); /*  Crece un poco */
+  text-shadow: 
+    1px 1px 0px rgba(0,0,0,0.9), 
+    0px 0px 14px rgba(255,255,255,0.8);
 }
 
 .footer-social-icons {
@@ -437,8 +468,8 @@ body {
 }
 
 /* RESPONSIVE */
-@media (max-width: 1200px) {
-  .photo-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 480px) {
+  .photo-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -446,441 +477,36 @@ body {
   .mobile-nav { width: 100%; } 
 }
 
-@media (max-width: 480px) {
-  .photo-grid { grid-template-columns: 1fr; }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@media (max-width: 1200px) {
+  .photo-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-body {
-  background-color: #000000;
-  color: #ffffff;
-  font-family: 'Jost', sans-serif;
-  overflow-x: hidden;
-  animation: fadeIn 1.0s ease-in-out;
-}
-
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* HEADER */
-.header {
-  background-color: #000;
-  padding: 30px 5%;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo img {
-  height: 20px;
-  width: 20PX;
-  display: block;
-  margin-left: 2px; /* Empuja el logo alineándolo a la derecha */
-  filter: brightness(0.5) invert(1);
-  transition: opacity 0.4s ease;
-}
-
-.logo:hover img {
-  opacity: 0.8;
-}
-
-/* BOTÓN HAMBURGUESA */
-.menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 10px;
-}
-
-.menu-btn span {
-  width: 25px;
-  height: 1px;
-  background-color: #fff;
-  transition: 0.3s ease;
-  display: block;
-}
-
-.menu-btn:hover span {
-  background-color: #888;
-}
-
-/* MENÚ DESPLEGABLE */
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100vh !important;
-  background-color: rgba(0, 0, 0, 0.92) !important;
-  backdrop-filter: blur(10px);
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 40px;
-  border-left: 1px solid #111;
-  font-family: 'Jost', sans-serif;
-  box-shadow: -10px 0px 30px rgba(0,0,0,0.5);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-  pointer-events: none;
-}
-
-.mobile-nav.active {
-  visibility: visible;
-  pointer-events: auto;
-  opacity: 1 !important;
-  transform: translateX(0) !important;
+/* 🪄 CONTROL EXACTO DE MENÚS SEGÚN LA PANTALLA */
+@media (max-width: 900px) {
+  /* En celulares y pantallas menores a 900px: se oculta el menú horizontal y aparece el botón hamburguesa */
+  .desktop-nav {
+    display: none !important;
   }
-
-.mobile-nav-link {
-  color: #999;
-  text-decoration: none;
-  font-size: 1.1rem;
-  margin: 12px 0;
-  letter-spacing: 3px;
-  font-weight: 300;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateX(30px);
-  transition: transform 0.2s ease, color 0.2s ease, letter-spacing 0.2s ease, opacity 0.4s ease;
+  .menu-btn {
+    display: flex !important;
+  }
 }
 
-.mobile-nav-link.sub {
-  font-size: 1.0rem;
-  color: #666;
-  margin-top: -5px;
-  margin-bottom: 10px;
-  padding-left: 15px;
+@media (min-width: 901px) {
+  /* En pantallas grandes (PC): se muestra el menú horizontal y se oculta la hamburguesa */
+  .desktop-nav {
+    display: flex !important;
+  }
+  .menu-btn {
+    display: none !important;
+  }
 }
 
-.mobile-nav-link:hover {
-  transition-delay: 0s !important;
-  color: #ffffff !important;
-  transform: scale(1.50);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  letter-spacing: 5px;
-}
-
-.mobile-nav.active .mobile-nav-link {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.mobile-nav.active .mobile-nav-link:nth-child(1) { transition-delay: 0.3s; }
-.mobile-nav.active .mobile-nav-link:nth-child(2) { transition-delay: 0.4s; }
-.mobile-nav.active .mobile-nav-link:nth-child(3) { transition-delay: 0.5s; }
-.mobile-nav.active .mobile-nav-link:nth-child(4) { transition-delay: 0.6s; }
-.mobile-nav.active .mobile-nav-link:nth-child(5) { transition-delay: 0.7s; }
-.mobile-nav.active .mobile-nav-link:nth-child(6) { transition-delay: 0.8s; }
-
-.mobile-nav-link:active {
-  color: #fff !important;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.75);
-  transition: 0.2s;
-  transform: scale(1.0);
-}
-
-.close-menu {
-  position: absolute;
-  top: 35px;
-  right: 30px;
-  background: none;
-  border: none;
-  color: #999;
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.close-menu:hover {
-  color: #ffffff !important;
-  font-size: 1.2rem;
-}
-
-/* GRILLA FOTOGRÁFICA */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  /* Animación que se dispara cada vez que el elemento se crea/renderiza */
-  animation: aflorar 5.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes aflorar {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.photo-item {
-  line-height: 0;
-  overflow: hidden;
-  aspect-ratio: 1 / 1;
-  background-color: #000;
-}
-
-.photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.0s ease;
-}
-
-.photo-item:hover img {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-
-/* El resto del código se mantiene igual que tu original */
-
-/* LIGHTBOX */
-.lightbox {
-  position: fixed; 
-  inset: 0; 
-  background: rgba(0,0,0,0.95);
-  z-index: 3000; 
-  display: none; 
-  flex-direction: column;
-  justify-content: left; 
-  align-items: center;
-}
-
-.lightbox-content {
-  position: relative;
-  display: inline-block; /* Abraza a la imagen */
-  max-width: 90vw;       /* Aire en los bordes */
-  margin: auto;          /* Centra el conjunto */
-  text-align: left;      /* Asegura que el texto nazca a la izquierda */
-}
-
-#lightboxImg {
-  height: auto;
-  max-height: 80vh;
-  width: auto;
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  object-fit: contain; /* 👈 Seguridad: mantiene la integridad de la obra */
-  pointer-events: none; /* 👈 Evita que el usuario arrastre la imagen por error */
-}
-
-/* ESTILO DE LA X */
-.lightbox-close {
-  ddisplay: block !important;
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  color: #ffffff;
-  z-index: 4000; 
-  cursor: pointer;
-  line-height: 1;
-  font-size: 2.0rem;
-}
-.lightbox-close:hover{
-  color: #ffffff !important;
-  font-size: 2.2rem;
-}
-
-
-/* FLECHAS DE NAVEGACIÓN */
-.nav-btn {
-  position: absolute;
-  top: 45%;
-  transform: translateY(-50%) !important;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 20px;      
-  z-index: 3100;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-btn svg {
-  color: rgba(255, 255, 255, 1.0) !important; 
-  fill: none !important; 
-  stroke: currentColor !important;
-  stroke-width: 0.5px !important; 
-  width: 45px !important;
-  height: 45px !important;
-  transition: all 0.4s ease;
-}
-/* 1. Posición base: Izquierda rotada, Derecha normal */
-.prev svg { 
-  transform: rotate(180deg) !important; 
-}
-
-.next svg { 
-  transform: rotate(0deg) !important; 
-}
-
-/* 2. Hover: Ambas se iluminan */
-.nav-btn:hover svg {
-  color: rgba(255, 255, 255, 1.5) !important;
-}
-
-/* 3. Hover específico: Para que no se den vuelta al crecer */
-.prev:hover svg {
-  transform: rotate(180deg) scale(1.2)!important;
-}
-
-.next:hover svg {
-  transform: rotate(0deg) scale(1.2)!important;
-}
-
-.prev { left: 4% !important; }
-.next { right: 4% !important; }
-
-/* TEXTO DE LA OBRA (ESQUINA INFERIOR IZQUIERDA) */
-.artwork-info {
-  margin-top: 12px;      /* Espacio de aire para que la obra respire */
-  padding-left: 2px;     /* Alineación quirúrgica con el borde del dibujo */
-  font-family: 'Jost', sans-serif;
-  width: 100%;           /* "Soldado" a la anchura de la imagen */
-  text-align: left; 
-  cursor: default;       /* Mantenemos la elegancia de que no es un link */
-}
-.artwork-info h3 {
-  font-size: 0.70rem;
-  font-family: 'Jost', sans-serif;
-  color: #888;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  transition: color 0.4s ease;
-}
-
-.artwork-info p {
-  font-size: 0.60rem;
-  font-family: 'Jost', sans-serif;
-  color: #777;
-  letter-spacing: 1px;
-  transition: all 0.4s ease;
-}
-
-.artwork-info:hover {
-  transform: scale(1.03); 
-  transform-origin: left; 
-}
-
-.artwork-info:hover h3 {
-  color: #ffff;
-}
-
-.artwork-info:hover p {
-  color: #ffff; 
-}
-/* FOOTER */
-@keyframes aflorarContactos {
-  0% { opacity: 0; transform: translateY(10px); visibility: hidden; }
-  /* Eliminamos el 95% para que la aparición sea constante y suave desde el inicio */
-  100% { opacity: 1; transform: translateY(0); visibility: visible; pointer-events: auto; } 
-}
-
-
-.footer-minimal {
-  opacity: 0;
-  background-color: #000;
-  padding: 50px 20px;
-  text-align: center;
-  border-top: 1px solid #111;
-  display: block;
-  pointer-events: none;
-}
-.footer-activo {
-  animation: aflorarContactos 6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  /* 🪄 Ingeniería de Invisibilidad: Elimina la vibración de píxeles */
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-.social-title {
-  font-family: 'Jost', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 3px;
-  color: #999 ;
-  margin-top: 50px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-}
-.social-title:hover {
-  color: #ffffff;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-social-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center !important;
-  gap: 40px;
-  margin-bottom: 20px;
-  margin-top: 30px;
-  color: #666;
-}
-
-.footer-social-icons svg {
-  width: 38px;
-  height: 38px;
-}
-
-.footer-social-icons a {
-  color: #777 ;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-social-icons a:hover {
-  color: #ffffff;
-  transform: translateY(-3px) scale(1.40);
-}
-
-.footer-statement {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1.8rem;
-  color: #f5f5f5 !important; 
-  line-height: 1.5;
-  width: 95%;
-  max-width: 1000px;
-  
-  /* CAMBIO CLAVE: 120px arriba, centro a los lados, y solo 30px abajo */
-  margin: 120px auto 30px; 
-  text-align: center;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1); 
-}
-
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-  .photo-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
+/* Agrandar la X específicamente para celulares */
 @media (max-width: 768px) {
-  .photo-grid { grid-template-columns: repeat(2, 1fr); }
-  .mobile-nav { width: 100%; } 
-}
-
-@media (max-width: 480px) {
-  .photo-grid { grid-template-columns: 1fr; }
+  .lightbox-close {
+    font-size: 5.5rem !important; /* Un tamaño enorme para asegurar el toque */
+    top: 10px; /* Ajusta la posición si queda muy cerca del borde al crecer */
+    right: 10px;
+  }
 }
