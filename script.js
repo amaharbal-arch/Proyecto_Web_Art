@@ -1,3 +1,4 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 const SUPABASE_URL = 'https://ehqzwwhowyuvrrnwszhr.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_6VrAfvNy2NhbJpWalFGqLw_I295HGsv'; 
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -79,7 +80,7 @@ document.getElementById('openMenu').onclick = () => menuOverlay.classList.add('a
 document.getElementById('closeMenu').onclick = () => menuOverlay.classList.remove('active');
 
 // ASIGNAR FILTROS A LOS LINKS DEL MENÚ
-document.querySelectorAll('.mobile-nav-link').forEach(link => {
+document.querySelectorAll('.desktop-nav a, .mobile-nav-link').forEach(link => {
   link.onclick = (e) => {
     const textoBoton = e.target.innerText.trim();
     if (textoBoton === 'INICIO' || textoBoton === 'CONTACTO') {
@@ -92,6 +93,7 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
     menuOverlay.classList.remove('active');
   };
 });
+
 document.getElementById('lightbox').onclick = (e) => {
   if (e.target.id === 'lightbox') {
     document.getElementById('lightbox').style.display = 'none';
